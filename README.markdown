@@ -32,3 +32,7 @@ And that's it! Be sure to source your newly installed configuration (`:source $M
 The included `.vimrc` contains some very minimal configurations that should be sane defaults for most developers, including a colorscheme that is pulled from one of the installed
 bundles. Feel free to modify at will, of course. See the comments in the `.vimrc` file for more details, and check out the individual bundles that are pulled in on github until
 I decide to annotate & comment on what each of them do.
+
+## Screenshot
+
+And here's a gratuitous screenshot: ![screenshot of vim colorscheme & some configs in action](http://cl.ly/3H3A061F0c261k2I2m1t "Screenshot")
