@@ -35,4 +35,4 @@ I decide to annotate & comment on what each of them do.
 
 ## Screenshot
 
-And here's a gratuitous screenshot: ![screenshot of vim colorscheme & some configs in action](http://cl.ly/3H3A061F0c261k2I2m1t "Screenshot")
+And here's a gratuitous screenshot: ![screenshot of vim colorscheme & some configs in action](http://f.cl.ly/items/1L2e0L3M2Y1D371J0o19/Image%202011.08.31%206:27:25%20PM.png "Screenshot")
