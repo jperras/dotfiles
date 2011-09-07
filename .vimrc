@@ -125,7 +125,6 @@ set foldlevel=99
 """""""""""""""
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd filetype python set expandtab
-autocmd filetype html,xml set listchars=tab:→\
 autocmd filetype ruby set shiftwidth=2 tabstop=2
 
 
