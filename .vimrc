@@ -82,6 +82,9 @@ colorscheme chance-of-storm
 
 set ffs=unix,dos,mac "Default file types
 
+" swap files
+set directory=/tmp//
+
 " Basic
 syntax enable
 set number        " always show line numbers
