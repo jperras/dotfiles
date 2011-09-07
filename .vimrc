@@ -31,6 +31,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
+Bundle 'corntrace/bufexplorer'
 
 " Jekyll/Liquid
 Bundle 'tpope/vim-liquid'
