@@ -15,26 +15,28 @@ Bundle 'gmarik/vundle'
 " :BundleSearch(!) foo - search(or refresh cache first) for foo
 " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
-" System
+
+" VCS
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-git'
+
+" System
+Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
+Bundle 'scrooloose/snipmate-snippets'
 Bundle 'mileszs/ack.vim'
 Bundle 'vim-scripts/AutoClose'
-Bundle 'scrooloose/snipmate-snippets'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-git'
-Bundle 'ervandew/supertab'
-Bundle 'sjl/gundo.vim'
-Bundle 'vim-scripts/TaskList.vim'
-Bundle 'vim-scripts/taglist.vim'
+Bundle 'scrooloose/syntastic'
+"Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'ervandew/supertab'
+"Bundle 'vim-scripts/TaskList.vim'
+"Bundle 'vim-scripts/taglist.vim'
 
 " HTML/XML
-Bundle 'tpope/vim-ragtag'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Bundle 'tpope/vim-ragtag'
 
 " Jekyll/Liquid
 Bundle 'tpope/vim-liquid'
@@ -149,27 +151,25 @@ cmap w!! w !sudo tee % >/dev/null
 " Plugin configurations
 """"""""""""""""""""""""
 
-" Easymotion
-let g:EasyMotion_leader_key = '<Leader>m'
-
 " TaskList
-map <leader>l <Plug>TaskList
+"map <leader>l <Plug>TaskList
+
+" TagBar
+nnoremap <silent> <F8> :TagbarToggle<CR>
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+let g:tagbar_autoshowtag = 1
 
 "Taglist
-nnoremap <silent> <F8> :TlistToggle<CR>
-
-" Gundo
-map <leader>u :GundoToggle<CR>
+"nnoremap <silent> <F8> :TlistToggle<CR>
 
 " Command-T
 map <Leader>r :CommandT<CR>
 
-" Supertab
-let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menuone,longest,preview
-
 " NERDTree
 map <leader>g :NERDTreeToggle<CR>
+
+" SnipMate
+let g:snippets_dir = "~/.vim/bundle/snipmate-snippets"
 
 " Py.test
 " Execute the tests
@@ -181,3 +181,9 @@ nmap <silent><Leader>tn <Esc>:Pytest next<CR>
 nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
 nmap <silent><Leader>te <Esc>:Pytest error<CR>
 
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_jump=1
