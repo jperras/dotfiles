@@ -179,13 +179,30 @@ nmap <silent><Leader>tf <Esc>:Pytest file<CR>
 nmap <silent><Leader>tc <Esc>:Pytest class<CR>
 nmap <silent><Leader>tm <Esc>:Pytest method<CR>
 " cycle through test errors
-nmap <silent><Leader>tn <Esc>:Pytest next<CR>
-nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
-nmap <silent><Leader>te <Esc>:Pytest error<CR>
+nnoremap <silent><Leader>tn <Esc>:Pytest next<CR>
+nnoremap <silent><Leader>tp <Esc>:Pytest previous<CR>
+nnoremap <silent><Leader>te <Esc>:Pytest error<CR>
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" Statusline
+hi User1 guifg=#eea040 guibg=#222222
+hi User2 guifg=#dd3333 guibg=#222222
+hi User3 guifg=#ff66ff guibg=#222222
+hi User4 guifg=#a0ee40 guibg=#222222
+hi User5 guifg=#eeee40 guibg=#222222
+
+set statusline=
+set statusline +=%1*\ %n\ %*                              "buffer number
+set statusline +=%5*%{&ff}%*                              "file format
+set statusline +=%3*%y\ %*                                "file type
+set statusline +=%5*%{fugitive#statusline()}%*            "Git status
+set statusline +=%2*%#warningmsg#%*                       "Syntastic warning msg
+set statusline +=%2*%{SyntasticStatuslineFlag()}%*        "Syntastic status
+set statusline +=%4*\ %<%F%*                              "full path
+set statusline +=%2*%m%*                                  "modified flag
+set statusline +=%1*%=%5l%*                               "current line
+set statusline +=%2*/%L%*                                 "total lines
+set statusline +=%1*%4c\ %*                               "column number
+set statusline +=%2*0x%04B\ %*                            "character under cursor
+"set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ %#warningmsg#\ %{SyntasticStatuslineFlag()}\ %y\ %=[format=%{&ff}]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [%l/%L,%v][%p%%]
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=1
