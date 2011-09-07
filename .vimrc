@@ -144,7 +144,7 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Get rid of search hilighting with ,/
-nmap <silent> <leader>/ :nohlsearch<CR>
+nnoremap <silent> <leader>/ :nohlsearch<CR>
 
 " Fix those pesky situations where you edit & need sudo to save
 cmap w!! w !sudo tee % >/dev/null
@@ -165,19 +165,19 @@ let g:tagbar_autoshowtag = 1
 "nnoremap <silent> <F8> :TlistToggle<CR>
 
 " Command-T
-map <Leader>r :CommandT<CR>
+nnoremap <Leader>r :CommandT<CR>
 
 " NERDTree
-map <leader>g :NERDTreeToggle<CR>
+nnoremap <leader>g :NERDTreeToggle<CR>
 
 " SnipMate
 let g:snippets_dir = "~/.vim/bundle/snipmate-snippets"
 
 " Py.test
 " Execute the tests
-nmap <silent><Leader>tf <Esc>:Pytest file<CR>
-nmap <silent><Leader>tc <Esc>:Pytest class<CR>
-nmap <silent><Leader>tm <Esc>:Pytest method<CR>
+nnoremap <silent><Leader>tf <Esc>:Pytest file<CR>
+nnoremap <silent><Leader>tc <Esc>:Pytest class<CR>
+nnoremap <silent><Leader>tm <Esc>:Pytest method<CR>
 " cycle through test errors
 nnoremap <silent><Leader>tn <Esc>:Pytest next<CR>
 nnoremap <silent><Leader>tp <Esc>:Pytest previous<CR>
