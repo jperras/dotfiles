@@ -30,13 +30,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/syntastic'
-"Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'ervandew/supertab'
-"Bundle 'vim-scripts/TaskList.vim'
-"Bundle 'vim-scripts/taglist.vim'
-
-" HTML/XML
-"Bundle 'tpope/vim-ragtag'
+Bundle 'ervandew/supertab'
 
 " Jekyll/Liquid
 Bundle 'tpope/vim-liquid'
