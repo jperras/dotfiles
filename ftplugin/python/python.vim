@@ -39,22 +39,6 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd FileType python autocmd BufWritePre * :%s/\s\+$//e
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"pylint
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"pylint
-"http://www.vim.org/scripts/script.php?script_id=891
-"assing pylint as compiler to the python files
-autocmd FileType python compiler pylint
-"To disable calling Pylint every time a buffer is saved put into .vimrc file
-"let g:pylint_onwrite = 0
-"Displaying code rate calculated by Pylint can be avoided by setting
-"let g:pylint_show_rate = 0
-"Openning of QuickFix window can be disabled with
-"let g:pylint_cwindow = 0
-"Of course, standard :make command can be used as in case
-
 "the quickfix window is not always 10 lines height
 au FileType qf call AdjustWindowHeight(3, 10)
 function! AdjustWindowHeight(minheight, maxheight)
@@ -100,7 +84,6 @@ vnoremap <space> zf
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-noremap <silent> w<F5> :QFix<CR>
 "code complete
 inoremap <Nul> <C-x><C-o>
 

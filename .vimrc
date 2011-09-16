@@ -25,23 +25,23 @@ Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/snipmate-snippets'
 Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/AutoClose'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
 Bundle 'corntrace/bufexplorer'
+Bundle 'vim-scripts/python_match.vim'
+Bundle 'Raimondi/delimitMate'
+Bundle 'tpope/vim-cucumber'
 
 " Jekyll/Liquid
 Bundle 'tpope/vim-liquid'
 
 " Python bundles
-Bundle 'mitechie/pyflakes-pathogen'
+Bundle 'kevinw/pyflakes-vim'
 Bundle 'fs111/pydoc.vim'
 Bundle 'vim-scripts/pep8'
-Bundle 'alfredodeza/pytest.vim'
-Bundle 'reinh/vim-makegreen'
 Bundle 'sontek/rope-vim'
 
 " Ruby specific
@@ -120,6 +120,8 @@ set foldlevel=99
 """""""""""""""
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd filetype python set expandtab
+autocmd FileType python let g:pep8_map='<F4>'
+autocmd FileType python set colorcolumn=80
 autocmd filetype ruby set shiftwidth=2 tabstop=2
 
 
@@ -133,6 +135,10 @@ autocmd BufWinLeave * call clearmatches()
 
 " Custom mappings
 """"""""""""""""""
+
+" Genral
+noremap <silent> <F3> :QFix<CR>
+
 
 " Change leader
 let mapleader = ","
@@ -152,7 +158,7 @@ cmap w!! w !sudo tee % >/dev/null
 "map <leader>l <Plug>TaskList
 
 " TagBar
-nnoremap <silent> <F8> :TagbarToggle<CR>
+nnoremap <silent> <F2> :TagbarToggle<CR>
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 let g:tagbar_autoshowtag = 1
 
@@ -167,16 +173,6 @@ nnoremap <leader>g :NERDTreeToggle<CR>
 
 " SnipMate
 let g:snippets_dir = "~/.vim/bundle/snipmate-snippets"
-
-" Py.test
-" Execute the tests
-nnoremap <silent><Leader>tf <Esc>:Pytest file<CR>
-nnoremap <silent><Leader>tc <Esc>:Pytest class<CR>
-nnoremap <silent><Leader>tm <Esc>:Pytest method<CR>
-" cycle through test errors
-nnoremap <silent><Leader>tn <Esc>:Pytest next<CR>
-nnoremap <silent><Leader>tp <Esc>:Pytest previous<CR>
-nnoremap <silent><Leader>te <Esc>:Pytest error<CR>
 
 " Statusline
 hi User1 guifg=#eea040 guibg=#222222
