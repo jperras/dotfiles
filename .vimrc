@@ -21,6 +21,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
 
 " System
+Bundle 'vim-scripts/Gist.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/snipmate-snippets'
