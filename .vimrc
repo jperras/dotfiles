@@ -199,5 +199,6 @@ set statusline +=%1*%=%5l%*                               "current line
 set statusline +=%2*/%L%*                                 "total lines
 set statusline +=%1*%4c\ %*                               "column number
 set statusline +=%2*0x%04B\ %*                            "character under cursor
+
 let g:syntastic_enable_signs=1
-let g:syntastic_auto_jump=1
+let g:syntastic_auto_jump=0
