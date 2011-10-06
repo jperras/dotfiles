@@ -120,10 +120,12 @@ set foldlevel=99
 
 " Auto-commands
 """""""""""""""
+autocmd FileType * setlocal colorcolumn=0
+autocmd FileType python setlocal colorcolumn=80
+autocmd FileType php setlocal colorcolumn=100
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd filetype python set expandtab
 autocmd FileType python let g:pep8_map='<F4>'
-autocmd FileType python set colorcolumn=80
 autocmd filetype ruby set shiftwidth=2 tabstop=2
 
 
