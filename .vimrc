@@ -53,6 +53,8 @@ Bundle "vim-ruby/vim-ruby"
 Bundle 'rodjek/vim-puppet'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-endwise'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'kchmck/vim-coffee-script'
 
 " Non-github repos
 Bundle 'git://git.wincent.com/command-t.git'
@@ -177,6 +179,12 @@ nnoremap <leader>g :NERDTreeToggle<CR>
 
 " SnipMate
 let g:snippets_dir = "~/.vim/bundle/snipmate-snippets"
+
+" Double rainbow - What does it mean!?
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 " Statusline
 hi User1 guifg=#eea040 guibg=#222222
