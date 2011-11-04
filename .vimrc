@@ -115,21 +115,39 @@ set smarttab      " insert tabs on the start of a line according to
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
 
-" Code Folding
+" General Code Folding
+""""""""""""""""""""""
 set foldmethod=indent
 set foldlevel=99
 
 
-" Auto-commands
-"""""""""""""""
+" General auto-commands
+"""""""""""""""""""""""
 autocmd FileType * setlocal colorcolumn=0
-autocmd FileType python setlocal colorcolumn=80
-autocmd FileType php setlocal colorcolumn=100
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd filetype python set expandtab
-autocmd FileType python let g:pep8_map='<F4>'
+
+" Ruby Configurations
+"""""""""""""""""""""
 autocmd filetype ruby set shiftwidth=2 tabstop=2
 
+" PHP Configurations
+""""""""""""""""""""
+autocmd FileType php setlocal colorcolumn=100
+
+" Python configurations
+"""""""""""""""""""""""
+au BufNewFile,BufReadPost python setlocal shiftwidth=2 expandtab
+autocmd FileType python setlocal colorcolumn=80
+autocmd FileType python let g:pep8_map='<F4>'
+
+" Coffeescript configurations
+"""""""""""""""""""""""""""""
+au BufNewFile,BufReadPost *.coffee setlocal foldmethod=indent
+au BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
+
+" Javascript configurations
+"""""""""""""""""""""""""""
+au BufNewFile,BufReadPost *.js setlocal shiftwidth=2 expandtab
 
 " Make sure we hilight extra whitespace in the most annoying way possible.
 highlight ExtraWhitespace ctermbg=red guibg=red
