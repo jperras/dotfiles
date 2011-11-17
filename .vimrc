@@ -200,9 +200,6 @@ nnoremap <silent> <F2> :TagbarToggle<CR>
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 let g:tagbar_autoshowtag = 1
 
-"Taglist
-"nnoremap <silent> <F8> :TlistToggle<CR>
-
 " Command-T
 nnoremap <Leader>r :CommandT<CR>
 
