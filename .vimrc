@@ -62,6 +62,7 @@ Bundle 'git://git.wincent.com/command-t.git'
 " Fun, but not useful
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'skammer/vim-css-color'
+Bundle 'groenewege/vim-less'
 Bundle 'mgutz/vim-colors'
 Bundle 'ehamberg/vim-cute-python'
 Bundle 'tpope/vim-speeddating'
