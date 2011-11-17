@@ -104,6 +104,11 @@ set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 
+" Remove the toolbar if we're running under a GUI (e.g. MacVIM).
+if has("gui_running")
+  set guioptions=-t
+endif
+
 " Special characters for hilighting non-priting spaces/tabs/etc.
 set list listchars=tab:→\ ,trail:·
 
