@@ -91,20 +91,23 @@ set wildignore+=*.DS_Store                       " OSX bullshit
 set wildignore+=*.luac                           " Lua byte code
 set wildignore+=*.pyc                            " Python byte code
 
+" Save when losing focus
+au FocusLost * :wa
+
+" Resize splits when the window is resized
+au VimResized * exe "normal! \<c-w>="
+
 
 " Colours
 colorscheme chance-of-storm
-
-set ffs=unix,dos,mac "Default file types
-
-" swap files
-set directory=/tmp//
 
 " Basic
 syntax enable
 set number        " always show line numbers
 set hidden
 set backspace=indent,eol,start
+set directory=/tmp// " swap files
+set ffs=unix,dos,mac "Default file types
 set nowrap        " don't wrap lines
 set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
