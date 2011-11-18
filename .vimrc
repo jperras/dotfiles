@@ -150,6 +150,11 @@ set foldlevel=99
 """"""""""""""""""""""""""""""""
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+" I CAN HAZ NORMAL REGEXES?
+"""""""""""""""""""""""""""
+nnoremap / /\v
+vnoremap / /\v
+
 
 " General auto-commands
 """""""""""""""""""""""
