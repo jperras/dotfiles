@@ -133,6 +133,8 @@ set list listchars=tab:→\ ,trail:·
 " Tabs & spaces
 set tabstop=4     " a tab is four spaces
 set shiftwidth=4  " number of spaces to use for autoindenting
+set softtabstop=4
+set expandtab
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set smarttab      " insert tabs on the start of a line according to
                   "    shiftwidth, not tabstop
