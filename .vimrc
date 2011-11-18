@@ -146,6 +146,10 @@ set copyindent    " copy the previous indentation on autoindenting
 set foldmethod=indent
 set foldlevel=99
 
+" Highlight VCS conflict markers
+""""""""""""""""""""""""""""""""
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
 
 " General auto-commands
 """""""""""""""""""""""
