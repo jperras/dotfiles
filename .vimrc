@@ -163,6 +163,10 @@ vnoremap / /\v
 autocmd FileType * setlocal colorcolumn=0
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
+" Markdown auto-commands
+""""""""""""""""""""""""
+autocmd FileType markdown setlocal wrap linebreak nolist
+
 " Ruby Configurations
 """""""""""""""""""""
 autocmd filetype ruby set shiftwidth=2 tabstop=2
