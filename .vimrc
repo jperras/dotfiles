@@ -245,6 +245,10 @@ let NERDTreeIgnore=['\.vim$', '\~$', '.*\.egg-info']
 " SnipMate
 let g:snippets_dir = "~/.vim/bundle/snipmate-snippets"
 
+" Sparkup
+let g:sparkupExecuteMapping = '<leader><Tab>'
+let g:sparkupNextMapping = '<leader>a'
+
 " Double rainbow - What does it mean!?
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
