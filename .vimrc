@@ -43,7 +43,6 @@ Bundle 'tpope/vim-liquid'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'fs111/pydoc.vim'
 Bundle 'vim-scripts/pep8'
-Bundle 'sontek/rope-vim'
 Bundle 'atourino/jinja.vim'
 
 " Ruby specific
