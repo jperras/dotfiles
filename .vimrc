@@ -54,6 +54,9 @@ Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-endwise'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'henrik/vim-markdown-preview'
+Bundle 'emilkje/sparkup-bundle'
 
 " Non-github repos
 Bundle 'git://git.wincent.com/command-t.git'
