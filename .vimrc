@@ -192,7 +192,7 @@ au BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
 au BufNewFile,BufReadPost *.js setlocal shiftwidth=2 expandtab
 
 " Get jinja filetype selection working correctly for *.jinja.html files.
-autocmd Filetype *.jinja.html setlocal filetype=htmljinja
+au BufNewFile,BufReadPost *.jinja.html setlocal filetype=htmljinja
 
 " Make sure we hilight extra whitespace in the most annoying way possible.
 highlight ExtraWhitespace ctermbg=red guibg=red
