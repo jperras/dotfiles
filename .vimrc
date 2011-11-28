@@ -241,7 +241,7 @@ nnoremap <Leader>r :CommandT<CR>
 
 " NERDTree
 nnoremap <leader>g :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.vim$', '\~$', '.*\.egg-info']
+let NERDTreeIgnore=['\.vim$', '\~$', '.*\.egg-info', '.*\.pyc$']
 
 " SnipMate
 let g:snippets_dir = "~/.vim/bundle/snipmate-snippets"
