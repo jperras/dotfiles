@@ -35,6 +35,7 @@ Bundle 'corntrace/bufexplorer'
 Bundle 'vim-scripts/python_match.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'tpope/vim-cucumber'
+Bundle 'leshill/vim-json'
 
 " Jekyll/Liquid
 Bundle 'tpope/vim-liquid'
