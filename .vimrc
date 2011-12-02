@@ -23,8 +23,6 @@ Bundle 'tpope/vim-git'
 " System
 Bundle 'vim-scripts/Gist.vim'
 Bundle 'majutsushi/tagbar'
-Bundle 'msanders/snipmate.vim'
-Bundle 'scrooloose/snipmate-snippets'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
@@ -32,7 +30,6 @@ Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
 Bundle 'corntrace/bufexplorer'
-Bundle 'vim-scripts/python_match.vim'
 Bundle 'Raimondi/delimitMate'
 Bundle 'tpope/vim-cucumber'
 Bundle 'leshill/vim-json'
@@ -45,19 +42,19 @@ Bundle 'kevinw/pyflakes-vim'
 Bundle 'fs111/pydoc.vim'
 Bundle 'vim-scripts/pep8'
 Bundle 'atourino/jinja.vim'
+Bundle 'vim-scripts/python_match.vim'
 
 " Ruby specific
 Bundle "vim-ruby/vim-ruby"
+Bundle 'tpope/vim-endwise'
 
 " Other
 Bundle 'rodjek/vim-puppet'
 Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-endwise'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'plasticboy/vim-markdown'
-Bundle 'henrik/vim-markdown-preview'
-Bundle 'emilkje/sparkup-bundle'
+Bundle 'sophacles/vim-bundle-sparkup'
 
 " Non-github repos
 Bundle 'git://git.wincent.com/command-t.git'
