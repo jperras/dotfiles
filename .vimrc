@@ -88,7 +88,9 @@ set wildignore+=*.pyc                            " Python byte code
 set wildignore+=**.class                          " Cursed Java class files
 
 " Save when losing focus
-au FocusLost * :wa
+set autowriteall " Auto-save files when switching buffers or leaving vim.
+au FocusLost * silent! :wa
+au TabLeave * silent! :wa
 
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
@@ -100,15 +102,16 @@ colorscheme chance-of-storm
 " Basic
 syntax enable
 set number        " always show line numbers
-set hidden
-set backspace=indent,eol,start
+set hidden        " Allow un-saved buffers in background
+set clipboard=unnamed " Share system clipboard.
+set backspace=indent,eol,start " Make backspace behave normally.
 set directory=/tmp// " swap files
 set ffs=unix,dos,mac "Default file types
 set nowrap        " don't wrap lines
 set showmatch     " set show matching parenthesis
 set ignorecase    " ignore case when searching
 set smartcase     " ignore case if search pattern is all lowercase,
-                  "    case-sensitive otherwise
+                  "  case-sensitive otherwise
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 set history=1000         " remember more commands and search history
