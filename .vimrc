@@ -85,7 +85,7 @@ set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 set wildignore+=*.luac                           " Lua byte code
 set wildignore+=*.pyc                            " Python byte code
-set wildignore=**.class                          " Cursed Java class files
+set wildignore+=**.class                          " Cursed Java class files
 
 " Save when losing focus
 au FocusLost * :wa
