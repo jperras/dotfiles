@@ -18,24 +18,28 @@ Bundle 'gmarik/vundle'
 
 " VCS
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-git'
 
 " System
 Bundle 'vim-scripts/Gist.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
-Bundle 'corntrace/bufexplorer'
 Bundle 'Raimondi/delimitMate'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'sophacles/vim-bundle-sparkup'
+
+" Syntaxes and such.
 Bundle 'tpope/vim-cucumber'
 Bundle 'leshill/vim-json'
-
-" Jekyll/Liquid
 Bundle 'tpope/vim-liquid'
+Bundle 'rodjek/vim-puppet'
+Bundle 'tpope/vim-haml'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'groenewege/vim-less'
 
 " Python bundles
 Bundle 'kevinw/pyflakes-vim'
@@ -48,21 +52,12 @@ Bundle 'vim-scripts/python_match.vim'
 Bundle "vim-ruby/vim-ruby"
 Bundle 'tpope/vim-endwise'
 
-" Other
-Bundle 'rodjek/vim-puppet'
-Bundle 'tpope/vim-haml'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'sophacles/vim-bundle-sparkup'
-
 " Non-github repos
 Bundle 'git://git.wincent.com/command-t.git'
 
 " Fun, but not useful
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'skammer/vim-css-color'
-Bundle 'groenewege/vim-less'
 Bundle 'mgutz/vim-colors'
 Bundle 'ehamberg/vim-cute-python'
 Bundle 'tpope/vim-speeddating'
@@ -234,11 +229,7 @@ let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 let g:tagbar_autoshowtag = 1
 
 " Command-T
-nnoremap <Leader>r :CommandT<CR>
-
-" NERDTree
-nnoremap <leader>g :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.vim$', '\~$', '.*\.egg-info', '.*\.pyc$']
+nnoremap <Leader>t :CommandT<CR>
 
 " SnipMate
 let g:snippets_dir = "~/.vim/bundle/snipmate-snippets"
