@@ -61,6 +61,7 @@ Bundle 'skammer/vim-css-color'
 Bundle 'mgutz/vim-colors'
 Bundle 'ehamberg/vim-cute-python'
 Bundle 'tpope/vim-speeddating'
+Bundle 'Lokaltog/vim-powerline'
 
 filetype plugin indent on     " required!
 
@@ -247,27 +248,6 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-"Statusline
-hi User1 guifg=#eea040 guibg=#000000
-hi User2 guifg=#dd3333 guibg=#000000
-hi User3 guifg=#ff66ff guibg=#000000
-hi User4 guifg=#a0ee40 guibg=#000000
-hi User5 guifg=#eeee40 guibg=#000000
-
 set laststatus=2
-set statusline=
-set statusline +=%1*\ %n\ %*                              "buffer number
-set statusline +=%5*%{&ff}%*                              "file format
-set statusline +=%3*%y\ %*                                "file type
-set statusline +=%5*%{fugitive#statusline()}%*            "Git status
-set statusline +=%2*%#warningmsg#%*                       "Syntastic warning msg
-set statusline +=%2*%{SyntasticStatuslineFlag()}%*        "Syntastic status
-set statusline +=%4*\ %<%F%*                              "full path
-set statusline +=%2*%m%*                                  "modified flag
-set statusline +=%1*%=%5l%*                               "current line
-set statusline +=%2*/%L%*                                 "total lines
-set statusline +=%1*%4c\ %*                               "column number
-set statusline +=%2*0x%04B\ %*                            "character under cursor
-
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=0
