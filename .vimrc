@@ -161,6 +161,13 @@ vnoremap / /\v
 autocmd FileType * setlocal colorcolumn=0
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
+" Get rid of trailing whitespace highlighting in mutt.
+autocmd FileType mail highlight clear ExtraWhitespace
+
+" Crontab auto-commands
+"""""""""""""""""""""""
+autocmd FileType crontab setlocal backupcopy=yes
+
 " Markdown auto-commands
 """"""""""""""""""""""""
 autocmd FileType markdown setlocal wrap linebreak nolist
@@ -197,7 +204,6 @@ match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
 
 " Custom mappings
 """"""""""""""""""
