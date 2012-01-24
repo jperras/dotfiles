@@ -41,6 +41,7 @@ Bundle 'tpope/vim-haml'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'groenewege/vim-less'
+Bundle 'jcf/vim-latex'
 
 " Python bundles
 Bundle 'kevinw/pyflakes-vim'
