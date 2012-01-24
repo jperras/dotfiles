@@ -165,6 +165,7 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
 " Get rid of trailing whitespace highlighting in mutt.
 autocmd FileType mail highlight clear ExtraWhitespace
+autocmd FileType mail setlocal listchars=
 
 " Crontab auto-commands
 """""""""""""""""""""""
