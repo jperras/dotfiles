@@ -20,6 +20,7 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 
 " System
+Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/Gist.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
@@ -241,6 +242,9 @@ let g:tagbar_autoshowtag = 1
 
 " Command-T
 nnoremap <Leader>t :CommandT<CR>
+
+" NERDTree
+nnoremap <Leader>g :NERDTreeToggle<CR>
 
 " SnipMate
 let g:snippets_dir = "~/.vim/bundle/snipmate-snippets"
