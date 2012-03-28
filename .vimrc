@@ -31,6 +31,8 @@ Bundle 'ervandew/supertab'
 Bundle 'Raimondi/delimitMate'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sophacles/vim-bundle-sparkup'
+Bundle 'Rykka/ColorV'
+Bundle 'itspriddle/vim-jquery'
 
 " Syntaxes and such.
 Bundle 'tpope/vim-cucumber'
@@ -42,9 +44,13 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'groenewege/vim-less'
 Bundle 'jcf/vim-latex'
+Bundle 'othree/html5.vim'
+Bundle 'mutewinter/nginx.vim'
+Bundle 'msanders/cocoa.vim'
+Bundle 'empanda/vim-varnish'
 
 " Python bundles
-Bundle 'kevinw/pyflakes-vim'
+Bundle 'nvie/vim-flake8'
 Bundle 'fs111/pydoc.vim'
 Bundle 'vim-scripts/pep8'
 Bundle 'atourino/jinja.vim'
@@ -64,16 +70,13 @@ Bundle 'mgutz/vim-colors'
 Bundle 'ehamberg/vim-cute-python'
 Bundle 'tpope/vim-speeddating'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
 
 filetype plugin indent on     " required!
 
 " Configurations
 """"""""""""""""
-if has('gui_running')
-	set background=light
-else
-	set background=dark
-endif
+set background=dark
 
 " Wildmenu completion
 """""""""""""""""""""
@@ -98,9 +101,11 @@ au TabLeave * silent! :wa
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
-
-" Colours
-colorscheme chance-of-storm
+if !has("gui_running")
+    colorscheme chance-of-storm
+else
+    colorscheme solarized
+endif
 
 " Basic
 syntax enable
@@ -183,11 +188,15 @@ autocmd filetype ruby set shiftwidth=2 tabstop=2
 """"""""""""""""""""
 autocmd FileType php setlocal colorcolumn=100
 
+" Markdown Configurations
+""""""""""""""""""""
+autocmd FileType markdown setlocal colorcolumn=100
+
 " Python configurations
 """""""""""""""""""""""
-au BufNewFile,BufReadPost python setlocal shiftwidth=2 expandtab
+au BufNewFile,BufReadPost python setlocal shiftwidth=4 expandtab tabstop=4 softtabstop=4
 autocmd FileType python setlocal colorcolumn=80
-autocmd FileType python let g:pep8_map='<F4>'
+autocmd FileType python map <buffer> <F4> :call Flake8()<CR>
 
 " Coffeescript configurations
 """""""""""""""""""""""""""""
@@ -212,7 +221,7 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 """"""""""""""""""
 
 " Genral
-noremap <silent> <F3> :QFix<CR>
+noremap <silent> <F4> :QFix<CR>
 
 
 " Change leader
@@ -264,3 +273,5 @@ au Syntax * RainbowParenthesesLoadBraces
 set laststatus=2
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_jump=0
+
+let g:Powerline_symbols = 'fancy'

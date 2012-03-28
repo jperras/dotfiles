@@ -8,9 +8,9 @@ let python_setup = 'ok'
 "python general settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Number of spaces to use for each step of (auto)indent.
-setlocal shiftwidth=4
+setlocal shiftwidth=2
 "Number of spaces that a <Tab> in the file counts for.
-setlocal tabstop=4
+setlocal tabstop=2
 "Use the appropriate number of spaces to insert a <Tab>
 setlocal expandtab
 "Print the line number in front of each line
