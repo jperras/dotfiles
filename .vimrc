@@ -63,6 +63,7 @@ Bundle 'tpope/vim-endwise'
 
 
 " Fun, but not useful
+Bundle 'davidoc/taskpaper.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'skammer/vim-css-color'
 Bundle 'mgutz/vim-colors'
