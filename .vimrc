@@ -39,7 +39,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-cucumber'
 Bundle 'leshill/vim-json'
 Bundle 'tpope/vim-liquid'
-Bundle 'rodjek/vim-puppet'
+Bundle 'puppetlabs/puppet-syntax-vim'
 Bundle 'tpope/vim-haml'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'plasticboy/vim-markdown'
@@ -205,6 +205,10 @@ au BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
 " Javascript configurations
 """""""""""""""""""""""""""
 au BufNewFile,BufReadPost *.js setlocal shiftwidth=2 expandtab
+
+" Puppet configurations
+"""""""""""""""""""""""
+au FileType puppet setlocal noexpandtab
 
 " Get jinja filetype selection working correctly for *.jinja.html files.
 au BufNewFile,BufReadPost *.jinja.html setlocal filetype=htmljinja
