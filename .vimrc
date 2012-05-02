@@ -33,6 +33,7 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sophacles/vim-bundle-sparkup'
 Bundle 'Rykka/ColorV'
 Bundle 'itspriddle/vim-jquery'
+Bundle 'kien/ctrlp.vim'
 
 " Syntaxes and such.
 Bundle 'tpope/vim-cucumber'
@@ -60,8 +61,6 @@ Bundle 'vim-scripts/python_match.vim'
 Bundle "vim-ruby/vim-ruby"
 Bundle 'tpope/vim-endwise'
 
-" Non-github repos
-Bundle 'git://git.wincent.com/command-t.git'
 
 " Fun, but not useful
 Bundle 'altercation/vim-colors-solarized'
@@ -251,8 +250,8 @@ nnoremap <silent> <F2> :TagbarToggle<CR>
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 let g:tagbar_autoshowtag = 1
 
-" Command-T
-nnoremap <Leader>t :CommandT<CR>
+" crtl-p
+let g:ctrlp_map = '<c-p>'
 
 " NERDTree
 nnoremap <Leader>g :NERDTreeToggle<CR>
