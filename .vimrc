@@ -135,7 +135,7 @@ if has("gui_running")
 endif
 
 " Special characters for hilighting non-priting spaces/tabs/etc.
-set list listchars=tab:→\ ,trail:·
+set list listchars=tab:»\ ,trail:·
 
 " Tabs & spaces
 set tabstop=4     " a tab is four spaces
