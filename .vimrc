@@ -32,7 +32,6 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sophacles/vim-bundle-sparkup'
 Bundle 'Rykka/ColorV'
-Bundle 'itspriddle/vim-jquery'
 Bundle 'kien/ctrlp.vim'
 
 " Syntaxes and such.
@@ -49,18 +48,18 @@ Bundle 'othree/html5.vim'
 Bundle 'mutewinter/nginx.vim'
 Bundle 'msanders/cocoa.vim'
 Bundle 'empanda/vim-varnish'
+Bundle 'itspriddle/vim-jquery'
+Bundle 'atourino/jinja.vim'
 
 " Python bundles
 Bundle 'nvie/vim-flake8'
 Bundle 'fs111/pydoc.vim'
-Bundle 'vim-scripts/pep8'
-Bundle 'atourino/jinja.vim'
 Bundle 'vim-scripts/python_match.vim'
+Bundle 'jmcantrell/vim-virtualenv'
 
 " Ruby specific
 Bundle "vim-ruby/vim-ruby"
 Bundle 'tpope/vim-endwise'
-
 
 " Fun, but not useful
 Bundle 'davidoc/taskpaper.vim'
@@ -71,6 +70,8 @@ Bundle 'ehamberg/vim-cute-python'
 Bundle 'tpope/vim-speeddating'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
+Bundle 'chriskempson/base16-vim'
+Bundle 'chreekat/vim-paren-crosshairs'
 
 filetype plugin indent on     " required!
 
@@ -84,7 +85,6 @@ set wildmenu
 set wildmode=list:longest
 set wildignore+=.hg,.git,.svn                    " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
 set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wildignore+=*.spl                            " compiled spelling word lists
 set wildignore+=*.sw?                            " Vim swap files
@@ -137,7 +137,7 @@ endif
 " Special characters for hilighting non-priting spaces/tabs/etc.
 set list listchars=tab:»\ ,trail:·
 
-" Tabs & spaces
+" Default Tabs & spaces
 set tabstop=4     " a tab is four spaces
 set shiftwidth=4  " number of spaces to use for autoindenting
 set softtabstop=4
@@ -172,31 +172,53 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd FileType mail highlight clear ExtraWhitespace
 autocmd FileType mail setlocal listchars=
 
+" Reformat XML files
+au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
+
 " Crontab auto-commands
 """""""""""""""""""""""
 autocmd FileType crontab setlocal backupcopy=yes
 
-" Markdown auto-commands
-""""""""""""""""""""""""
-autocmd FileType markdown setlocal wrap linebreak nolist
+" turn-on distraction free writing mode for markdown files
+" au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn} call DistractionFreeWriting()
+
+function! DistractionFreeWriting()
+    colorscheme iawriter
+    set background=light
+    set gfn=Cousine:h14                " font to use
+    set lines=60 columns=100           " size of the editable area
+    set fuoptions=background:#00f5f6f6 " macvim specific setting for editor's background color
+    set guioptions-=r                  " remove right scrollbar
+    set laststatus=0                   " don't show status line
+    set noruler                        " don't show ruler
+    set fullscreen                     " go to fullscreen editing mode
+    set linebreak                      " break the lines on words
+endfunction
+
+:map <F8> :call DistractionFreeWriting()<CR>
+
+" Toggle spellcheck in normal mode
+:map <F5> :setlocal spell! spelllang=en_us<CR>
 
 " Ruby Configurations
 """""""""""""""""""""
-autocmd filetype ruby set shiftwidth=2 tabstop=2
+autocmd filetype ruby setlocal noexpandtab shiftwidth=2 tabstop=2
 
 " PHP Configurations
 """"""""""""""""""""
 autocmd FileType php setlocal colorcolumn=100
 
-" Markdown Configurations
-""""""""""""""""""""
-autocmd FileType markdown setlocal colorcolumn=100
+" HTML configurations
+"""""""""""""""""""""
+autocmd FileType html setlocal shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab
 
 " Python configurations
 """""""""""""""""""""""
-au BufNewFile,BufReadPost python set shiftwidth=4 expandtab tabstop=4 softtabstop=4
+autocmd FileType python setlocal shiftwidth=4 expandtab tabstop=4 softtabstop=4
 autocmd FileType python setlocal colorcolumn=80
 autocmd FileType python map <buffer> <F4> :call Flake8()<CR>
+autocmd FileType python autocmd BufWritePre * :%s/\s\+$//e
+autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 " Coffeescript configurations
 """""""""""""""""""""""""""""
@@ -240,7 +262,7 @@ cmap w!! w !sudo tee % >/dev/null
 
 
 " Plugin configurations
-""""""""""""""""""""""""
+"""""""""""""""""""""""
 
 " Gist
 let g:gist_clip_command = 'pbcopy'
@@ -254,12 +276,14 @@ let g:gist_show_privates = 1
 nnoremap <silent> <F2> :TagbarToggle<CR>
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 let g:tagbar_autoshowtag = 1
+let g:tagbar_autofocus = 1
 
 " crtl-p
 let g:ctrlp_map = '<c-p>'
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
 
 " NERDTree
-nnoremap <Leader>g :NERDTreeToggle<CR>
+nnoremap <Leader>f :NERDTreeToggle<CR>
 
 " SnipMate
 let g:snippets_dir = "~/.vim/bundle/snipmate-snippets"
@@ -268,6 +292,9 @@ let g:snippets_dir = "~/.vim/bundle/snipmate-snippets"
 let g:sparkupExecuteMapping = '<c-y>'
 let g:sparkupNextMapping = '<c-k>'
 
+" Jedi
+let g:jedi#goto_command = "<leader>g"
+
 " Double rainbow - What does it mean!?
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
@@ -275,7 +302,9 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 set laststatus=2
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_jump=0
+let g:syntastic_enable_signs = 1
+let g:syntastic_auto_jump = 0
+let g:syntastic_puppet_lint_disable = 0
+
 
 let g:Powerline_symbols = 'fancy'
