@@ -268,6 +268,7 @@ let g:syntastic_python_checker_args='--ignore=E501,E128'
 let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 2
 let g:gist_show_privates = 1
+let g:gist_post_private = 1
 
 " TaskList
 "map <leader>l <Plug>TaskList
