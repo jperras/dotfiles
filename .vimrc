@@ -20,18 +20,16 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 
 " System
-Bundle 'scrooloose/nerdtree'
+Bundle 'mattn/webapi-vim'
 Bundle 'vim-scripts/Gist.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/syntastic'
-Bundle 'ervandew/supertab'
 Bundle 'Raimondi/delimitMate'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sophacles/vim-bundle-sparkup'
-Bundle 'Rykka/ColorV'
 Bundle 'kien/ctrlp.vim'
 
 " Syntaxes and such.
@@ -43,7 +41,6 @@ Bundle 'tpope/vim-haml'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'groenewege/vim-less'
-Bundle 'jcf/vim-latex'
 Bundle 'othree/html5.vim'
 Bundle 'mutewinter/nginx.vim'
 Bundle 'msanders/cocoa.vim'
@@ -62,14 +59,11 @@ Bundle "vim-ruby/vim-ruby"
 Bundle 'tpope/vim-endwise'
 
 " Fun, but not useful
-Bundle 'davidoc/taskpaper.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'skammer/vim-css-color'
 Bundle 'mgutz/vim-colors'
 Bundle 'ehamberg/vim-cute-python'
-Bundle 'tpope/vim-speeddating'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
+Bundle 'Lokaltog/powerline'
 Bundle 'chriskempson/base16-vim'
 Bundle 'chreekat/vim-paren-crosshairs'
 
@@ -102,7 +96,8 @@ au TabLeave * silent! :wa
 au VimResized * exe "normal! \<c-w>="
 
 if !has("gui_running")
-    colorscheme chance-of-storm
+    "colorscheme chance-of-storm
+    colorscheme solarized
 else
     colorscheme solarized
 endif
@@ -128,6 +123,7 @@ set undolevels=1000      " use many muchos levels of undo
 set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
+set guifont=Menlo\ for\ Powerline:h11
 
 " Remove the toolbar if we're running under a GUI (e.g. MacVIM).
 if has("gui_running")
@@ -185,11 +181,10 @@ autocmd FileType crontab setlocal backupcopy=yes
 function! DistractionFreeWriting()
     colorscheme iawriter
     set background=light
-    set gfn=Cousine:h14                " font to use
     set lines=60 columns=100           " size of the editable area
     set fuoptions=background:#00f5f6f6 " macvim specific setting for editor's background color
     set guioptions-=r                  " remove right scrollbar
-    set laststatus=0                   " don't show status line
+    set laststatus=2                   " don't show status line
     set noruler                        " don't show ruler
     set fullscreen                     " go to fullscreen editing mode
     set linebreak                      " break the lines on words
@@ -280,10 +275,8 @@ let g:tagbar_autofocus = 1
 
 " crtl-p
 let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
-
-" NERDTree
-nnoremap <Leader>f :NERDTreeToggle<CR>
 
 " SnipMate
 let g:snippets_dir = "~/.vim/bundle/snipmate-snippets"
