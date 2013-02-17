@@ -305,5 +305,5 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_auto_jump = 0
 let g:syntastic_puppet_lint_disable = 0
 
-
-let g:Powerline_symbols = 'fancy'
+" Powerline
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
