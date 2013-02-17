@@ -259,6 +259,11 @@ cmap w!! w !sudo tee % >/dev/null
 " Plugin configurations
 """""""""""""""""""""""
 
+" Pyflakes
+"autocmd BufWritePost *.py call Flake8()
+let g:flake8_ignore="E128,E501"
+let g:syntastic_python_checker_args='--ignore=E501,E128'
+
 " Gist
 let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 2
