@@ -93,6 +93,10 @@ set wildignore+=*.luac                           " Lua byte code
 set wildignore+=*.pyc                            " Python byte code
 set wildignore+=**.class                          " Cursed Java class files
 
+" Ignore in buffer explorer
+let g:netrw_liststyle= 1 " Tree-mode
+let g:netrw_list_hide= '.*\.swp$,.*/$'
+
 " Save when losing focus
 set autowriteall " Auto-save files when switching buffers or leaving vim.
 au FocusLost * silent! :wa
