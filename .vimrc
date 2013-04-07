@@ -59,6 +59,11 @@ Bundle 'jmcantrell/vim-virtualenv'
 Bundle "vim-ruby/vim-ruby"
 Bundle 'tpope/vim-endwise'
 
+" Clojure
+Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-foreplay'
+Bundle 'tpope/vim-classpath'
+
 " Fun, but not useful
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'skammer/vim-css-color'
