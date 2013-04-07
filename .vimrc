@@ -31,6 +31,7 @@ Bundle 'Raimondi/delimitMate'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sophacles/vim-bundle-sparkup'
 Bundle 'kien/ctrlp.vim'
+Bundle 'airblade/vim-gitgutter'
 
 " Syntaxes and such.
 Bundle 'tpope/vim-cucumber'
