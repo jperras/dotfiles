@@ -23,8 +23,8 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'mattn/webapi-vim'
 Bundle 'vim-scripts/Gist.vim'
 Bundle 'majutsushi/tagbar'
-Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/nerdcommenter'
+Bundle 'rking/ag.vim'
+Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/syntastic'
 Bundle 'Raimondi/delimitMate'
@@ -32,6 +32,9 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'sophacles/vim-bundle-sparkup'
 Bundle 'kien/ctrlp.vim'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'paradigm/TextObjectify'
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
 
 " Syntaxes and such.
 Bundle 'tpope/vim-cucumber'
@@ -64,14 +67,21 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'tpope/vim-foreplay'
 Bundle 'tpope/vim-classpath'
 
+" Java
+Bundle 'mikelue/vim-maven-plugin'
+
 " Fun, but not useful
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'skammer/vim-css-color'
 Bundle 'mgutz/vim-colors'
 Bundle 'ehamberg/vim-cute-python'
-Bundle 'Lokaltog/powerline'
+Bundle 'bling/vim-airline'
 Bundle 'chriskempson/base16-vim'
 Bundle 'chreekat/vim-paren-crosshairs'
+Bundle 'laktek/distraction-free-writing-vim.git'
+Bundle 'jacekd/vim-iawriter'
+Bundle 'Acarapetis/vim-github-theme'
+Bundle 'Lokaltog/vim-distinguished.git'
 
 filetype plugin indent on     " required!
 
@@ -105,12 +115,7 @@ au TabLeave * silent! :wa
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
-if !has("gui_running")
-    "colorscheme chance-of-storm
-    colorscheme solarized
-else
-    colorscheme solarized
-endif
+colorscheme solarized
 
 " Basic
 syntax enable
@@ -134,6 +139,7 @@ set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 set guifont=Menlo\ for\ Powerline:h11
+"set guifont=Inconsolata-dz\ for\ Powerline:h11
 
 " Remove the toolbar if we're running under a GUI (e.g. MacVIM).
 if has("gui_running")
@@ -186,15 +192,15 @@ au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 autocmd FileType crontab setlocal backupcopy=yes
 
 " turn-on distraction free writing mode for markdown files
-" au BufNewFile,BufRead *.{md,mdown,mkd,mkdn,markdown,mdwn} call DistractionFreeWriting()
 
 function! DistractionFreeWriting()
     colorscheme iawriter
     set background=light
-    set lines=60 columns=100           " size of the editable area
+    set gfn=Cousine:h14                " font to use
+    set lines=40 columns=100           " size of the editable area
     set fuoptions=background:#00f5f6f6 " macvim specific setting for editor's background color
     set guioptions-=r                  " remove right scrollbar
-    set laststatus=2                   " don't show status line
+    set laststatus=0                   " don't show status line
     set noruler                        " don't show ruler
     set fullscreen                     " go to fullscreen editing mode
     set linebreak                      " break the lines on words
@@ -207,7 +213,7 @@ endfunction
 
 " Ruby Configurations
 """""""""""""""""""""
-autocmd filetype ruby setlocal noexpandtab shiftwidth=2 tabstop=2
+autocmd filetype ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 shiftwidth=2 colorcolumn=80
 
 " PHP Configurations
 """"""""""""""""""""
@@ -291,16 +297,19 @@ let g:tagbar_autofocus = 1
 
 " crtl-p
 let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
-
-let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_cmd = 'CtrlP'  " search anything (in files, buffers and MRU files at the same time.)
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard']
 let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_dotfiles = 0
-let g:ctrlp_switch_buffer = 0
+"let g:ctrlp_working_path_mode = 'ra' " search for nearest ancestor like .git, .hg, and the directory of the current file
+let g:ctrlp_match_window_bottom = 0 " show the match window at the top of the screen
+let g:ctrlp_max_height = 10 " maxiumum height of match window
+let g:ctrlp_switch_buffer = 'et' " jump to a file if it's open already
+let g:ctrlp_use_caching = 1 " enable caching
+let g:ctrlp_clear_cache_on_exit=0 " speed up by not removing clearing cache evertime
+let g:ctrlp_show_hidden = 0 " don't show me dotfiles
+let g:ctrlp_mruf_max = 250 " number of recently opened files
 nmap ; :CtrlPBuffer<CR>
+"
 
 " SnipMate
 let g:snippets_dir = "~/.vim/bundle/snipmate-snippets"
@@ -323,5 +332,45 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_auto_jump = 0
 let g:syntastic_puppet_lint_disable = 0
 
-" Powerline
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+" Airline configs
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" old vim-powerline symbols
+let g:airline_left_sep = '⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_symbols.branch = '⭠'
+let g:airline_symbols.readonly = '⭤'
+let g:airline_symbols.linenr = '⭡'
+
+
+" Delimitmate
+"create line break when pressing enter
+"let g:delimitMate_expand_cr = 1
+"let g:delimitMate_expand_space = 1
+
+" NerdTree
+map <leader>t :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.pyc$', '\~$']
+let g:nerdtree_tabs_open_on_gui_startup = 0
+let g:nerdtree_tabs_open_on_console_startup = 0
