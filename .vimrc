@@ -116,6 +116,10 @@ if has("gui_running")
   set guioptions=-t
 endif
 
+" Default background & theme
+set background=dark
+colorscheme solarized
+
 " Special characters for hilighting non-priting spaces/tabs/etc.
 set list listchars=tab:»\ ,trail:·
 
