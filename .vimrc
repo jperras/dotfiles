@@ -40,6 +40,8 @@ Bundle 'jtratner/vim-flavored-markdown'
 Bundle 'othree/html5.vim'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'atourino/jinja.vim'
+Bundle 'saltstack/salt-vim'
+Bundle 'ntpeters/vim-better-whitespace'
 
 " Python
 Bundle 'nvie/vim-flake8'
@@ -146,16 +148,16 @@ nnoremap / /\v
 vnoremap / /\v
 
 " Make sure we hilight extra whitespace in the most annoying way possible.
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" highlight ExtraWhitespace ctermbg=red guibg=red
+" match ExtraWhitespace /\s\+$/
+" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 
 
 " General auto-commands
 autocmd FileType * setlocal colorcolumn=0
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
 " Get rid of trailing whitespace highlighting in mutt.
 autocmd FileType mail highlight clear ExtraWhitespace
