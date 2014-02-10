@@ -192,6 +192,9 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 " Javascript configurations
 au BufNewFile,BufReadPost *.js setlocal shiftwidth=2 expandtab
 
+" Ensure that JSON files have their filetype properly set.
+au BufRead,BufNewFile *.json set filetype=json
+
 " Puppet configurations
 au FileType puppet setlocal noexpandtab
 
