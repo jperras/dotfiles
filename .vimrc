@@ -36,7 +36,7 @@ Bundle 'jistr/vim-nerdtree-tabs'
 " Syntaxes
 Bundle 'leshill/vim-json'
 Bundle 'puppetlabs/puppet-syntax-vim'
-Bundle 'plasticboy/vim-markdown'
+Bundle 'jtratner/vim-flavored-markdown'
 Bundle 'othree/html5.vim'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'atourino/jinja.vim'
@@ -163,6 +163,13 @@ autocmd FileType mail setlocal listchars=
 
 " Toggle spellcheck in normal mode
 :map <F5> :setlocal spell! spelllang=en_us<CR>
+
+
+" Markdown configurations
+augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
 
 " Ruby Configurations
 autocmd filetype ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2 shiftwidth=2 colorcolumn=80
