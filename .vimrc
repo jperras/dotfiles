@@ -31,6 +31,10 @@ Plug 'tmhedberg/SimpylFold'
 " Ctags tagbar
 Plug 'majutsushi/tagbar'
 
+" Allow better soft-wrapping of text in prose-based
+" formats e.g. markdown.
+Plug 'reedes/vim-pencil'
+
 call plug#end()
 
 " All key mappings
@@ -134,3 +138,21 @@ autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
 
 " Automatically strip trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Configure vim-pencil
+let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+                            \ | setl spell spl=en_us fdl=4 noru nonu nornu
+                            \ | setl fdo+=search
+  autocmd Filetype git,gitsendemail,*commit*,*COMMIT*
+                            \   call pencil#init({'wrap': 'hard', 'textwidth': 72})
+                            \ | setl spell spl=en_us et sw=2 ts=2 noai
+  autocmd Filetype mail         call pencil#init({'wrap': 'hard', 'textwidth': 60})
+                            \ | setl spell spl=en_us et sw=2 ts=2 noai nonu nornu
+  autocmd Filetype html,xml     call pencil#init({'wrap': 'soft'})
+                            \ | setl spell spl=en_us et sw=2 ts=2
+augroup END
+
+let g:airline_section_x = '%{PencilMode()}'
