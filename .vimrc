@@ -46,6 +46,10 @@ let mapleader = ","
 " Ignore case in search
 set ignorecase!
 
+" Only hide buffers when changing between them;
+" this way we can keep their undo histories.
+set hidden
+
 " NERDTree toggle
 noremap <leader>t :NERDTreeToggle<CR>
 
