@@ -13,6 +13,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
+Plug 'editorconfig/editorconfig-vim'
 
 " In-file searching ala 'ack'
 Plug 'rking/ag.vim'
@@ -160,3 +161,6 @@ augroup pencil
 augroup END
 
 let g:airline_section_x = '%{PencilMode()}'
+
+" Editorconfig exceptions
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
