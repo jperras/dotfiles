@@ -16,7 +16,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
 
 " In-file searching ala 'ack'
-Plug 'rking/ag.vim'
+" Plug 'rking/ag.vim'
+Plug 'gabesoft/vim-ags'
 
 " Fuzzy file finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
