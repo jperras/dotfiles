@@ -37,7 +37,16 @@ Plug 'majutsushi/tagbar'
 " formats e.g. markdown.
 Plug 'reedes/vim-pencil'
 
+" The all-important colorscheme
+Plug 'altercation/vim-colors-solarized'
+Plug '29decibel/codeschool-vim-theme'
+
 call plug#end()
+
+
+" Colorscheme
+set background=dark
+colorscheme solarized
 
 " All key mappings
 """"""""""""""""""
