@@ -41,13 +41,14 @@ Plug 'reedes/vim-pencil'
 " The all-important colorscheme
 Plug 'altercation/vim-colors-solarized'
 Plug '29decibel/codeschool-vim-theme'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
 
 " Colorscheme
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
 
 " All key mappings
 """"""""""""""""""
@@ -175,3 +176,6 @@ let g:airline_section_x = '%{PencilMode()}'
 
 " Editorconfig exceptions
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" configuring colours
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
