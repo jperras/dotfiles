@@ -14,9 +14,9 @@ Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'kshenoy/vim-signature'
 
 " In-file searching ala 'ack'
-" Plug 'rking/ag.vim'
 Plug 'gabesoft/vim-ags'
 
 " Fuzzy file finder
@@ -26,6 +26,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'saltstack/salt-vim'
 Plug 'stephpy/vim-yaml'
 Plug 'fatih/vim-go'
+Plug 'Glench/Vim-Jinja2-Syntax'
 
 " Code folding for Python
 Plug 'tmhedberg/SimpylFold'
