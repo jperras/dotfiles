@@ -157,8 +157,18 @@ let g:SimpylFold_docstring_preview = 1
 autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
 autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
 
-" Automatically strip trailing whitespace
-autocmd BufWritePre * :%s/\s\+$//e
+" Tell Vim which characters to show for expanded TABs,
+" trailing whitespace, and end-of-lines. VERY useful!
+" (Sourced from http://nerditya.com/code/guide-to-neovim/)
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
+set list                " Show problematic characters.
+
+" Highlight all tabs and trailing whitespace characters.
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+ match ExtraWhitespace /\s\+$\|\t/
+
 
 " Configure vim-pencil
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
