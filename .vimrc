@@ -28,6 +28,10 @@ Plug 'stephpy/vim-yaml'
 Plug 'fatih/vim-go'
 Plug 'Glench/Vim-Jinja2-Syntax'
 
+" REStructuredText
+Plug 'Rykka/riv.vim'
+Plug 'Rykka/InstantRst'
+
 " Code folding for Python
 Plug 'tmhedberg/SimpylFold'
 
