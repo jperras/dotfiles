@@ -128,7 +128,7 @@ autocmd FileType python BracelessEnable +indent +fold
 
 " Use braceless configuration for haml, yaml, coffeescript since none of those
 " use braces
-autocmd FileType haml,yaml,coffee BracelessEnable +indent +fold +highlight +highlight-cc2
+autocmd FileType haml,yaml,coffee BracelessEnable +indent +fold +highlight
 
 let g:braceless_cont_call = 1
 let g:braceless_cont_block = 1
@@ -189,20 +189,14 @@ endif
 set list                " Show problematic characters.
 
 " Highlight all tabs and trailing whitespace characters.
-highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+highlight ExtraWhitespace ctermbg=red guibg=red
  match ExtraWhitespace /\s\+$\|\t/
 
-
-" Markdown-ish configurations
-"""""""""""""""""""""""""""""""
-let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json=javascript', 'ruby']
-let g:vim_markdown_frontmatter=1
-
-" Configure vim-pencil
+ " Configure vim-pencil
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
 augroup pencil
   autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType markdown,mkd,liquid call pencil#init()
                             \ | setl spell spl=en_us fdl=4 noru nonu nornu
                             \ | setl fdo+=search
   autocmd Filetype git,gitsendemail,*commit*,*COMMIT*
@@ -215,6 +209,11 @@ augroup pencil
 augroup END
 
 let g:airline_section_x = '%{PencilMode()}'
+
+" Markdown-ish configurations
+"""""""""""""""""""""""""""""""
+let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json=javascript', 'ruby']
+let g:vim_markdown_frontmatter=1
 
 " Editorconfig exceptions
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
