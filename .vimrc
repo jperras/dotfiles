@@ -62,12 +62,15 @@ set laststatus=2
 call plug#end()
 
 " Colorscheme
-let base16colorspace=256
+set termguicolors
 set background=dark
-colorscheme base16-eighties
-"let g:gruvbox_italic=1 
-"set background=dark
-"colorscheme gruvbox
+let g:gruvbox_italic=1
+let g:gruvbox_italicize_comments=1
+let g:gruvbox_italicize_strings=1
+colorscheme gruvbox
+
+"let base16colorspace=256
+"colorscheme base16-eighties
 
 " Basic configurations
 """"""""""""""""""""""
