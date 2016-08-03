@@ -17,6 +17,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'kshenoy/vim-signature'
 Plug 'tweekmonster/braceless.vim'
 Plug 'Shougo/deoplete.nvim'
+Plug 'mhinz/vim-startify'
 
 
 " In-file searching ala 'ack'
