@@ -8,7 +8,6 @@ Plug 'tpope/vim-sensible'
 Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
@@ -21,6 +20,7 @@ Plug 'janko-m/vim-test'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
+Plug 'neomake/neomake'
 
 " In-file searching ala 'ack'
 Plug 'gabesoft/vim-ags'
@@ -105,6 +105,9 @@ let g:fzf_height = '30%'
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_tags_options = '-f .ctags"'
 
+" Run neomake on all files
+autocmd! BufWritePost * Neomake
+
 " Tagbar/ctags
 """"""""""""""
 nmap <F2> :TagbarToggle<CR>
@@ -146,23 +149,17 @@ let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python'  "force python
 " Syntax checker options
 let g:flake8_ignore="E128,E501"
 
-" Syntastic settings
-""""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_auto_jump = 0
-let g:syntastic_enable_signs = 1
-let g:syntastic_error_symbol = "✗"
-let g:syntastic_warning_symbol = "⚠"
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_disabled_filetypes=['html', 'jinja']
-let g:syntastic_python_flake8_args='--ignore=E501,E128'
+" Neomake configuration
+"""""""""""""""""""""""
+let g:neomake_python_flake8_maker = {
+    \ 'args': ['--ignore=E128,E501',  '--format=default'],
+    \ 'errorformat':
+        \ '%E%f:%l: could not compile,%-Z%p^,' .
+        \ '%A%f:%l:%c: %t%n %m,' .
+        \ '%A%f:%l: %t%n %m,' .
+        \ '%-G%.%#',
+    \ }
+let g:neomake_python_enabled_makers = ['flake8']
 
 
 " Airline configuration
