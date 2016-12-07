@@ -16,9 +16,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kshenoy/vim-signature'
 Plug 'tweekmonster/braceless.vim'
-Plug 'Shougo/deoplete.nvim'
 Plug 'mhinz/vim-startify'
-
+Plug 'janko-m/vim-test'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-jedi'
 
 " In-file searching ala 'ack'
 Plug 'gabesoft/vim-ags'
@@ -33,7 +35,6 @@ Plug 'stephpy/vim-yaml'
 Plug 'fatih/vim-go'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'tpope/vim-liquid'
-Plug 'chriskempson/base16-vim'
 
 " REStructuredText
 Plug 'Rykka/riv.vim'
@@ -51,10 +52,7 @@ Plug 'tpope/vim-markdown'
 Plug 'junegunn/goyo.vim'
 
 " The all-important colorschemes
-Plug 'altercation/vim-colors-solarized'
-Plug '29decibel/codeschool-vim-theme'
 Plug 'morhetz/gruvbox'
-Plug 'reedes/vim-colors-pencil'
 Plug 'vim-airline/vim-airline-themes'
 
 set laststatus=2
@@ -136,9 +134,14 @@ autocmd FileType haml,yaml,coffee BracelessEnable +indent +fold +highlight
 
 let g:braceless_cont_call = 1
 let g:braceless_cont_block = 1
+let g:braceless_line_continuation = 0
+
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+
+" Configure deoplete-jedi
+let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python'  "force python2
 
 " Syntax checker options
 let g:flake8_ignore="E128,E501"
@@ -176,6 +179,8 @@ let g:airline_right_sep=''
 " Use theme for Airline
 let g:airline_theme='papercolor'
 
+let g:airline_section_b = airline#section#create('%{virtualenv#statusline()}')
+
 " Vim-Golang plugin configs
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -206,7 +211,7 @@ augroup pencil
   autocmd Filetype git,gitsendemail,*commit*,*COMMIT*
                             \   call pencil#init()
                             \ | setl spell spl=en_us et sw=2 ts=2 tw=72 noai
-  autocmd Filetype mail         call pencil#init({'wrap': 'hard', 'textwidth': 80})
+  autocmd Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 80})
                             \ | setl spell spl=en_us et sw=2 ts=2 noai nonu nornu
   autocmd Filetype html,xml     call pencil#init({'wrap': 'soft'})
                             \ | setl spell spl=en_us et sw=2 ts=2
@@ -221,3 +226,9 @@ let g:vim_markdown_frontmatter=1
 
 " Editorconfig exceptions
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" Vim-test
+let test#strategy = "neovim"
+
+" specify the default virtualenv for neovim.
+let g:python3_host_prog = '/Users/hoth/.virtualenvs/neovim/bin/python3.5'
