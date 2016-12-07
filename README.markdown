@@ -48,8 +48,9 @@ $ git clone git@github.com:jperras/vim-dotfiles.git ~/.vim && ln -s ~/.vim/.vimr
 
    * [*fzf*](https://github.com/junegunn/fzf): For the best fuzzy file-finding you'll ever use.
    * *ctags*: For the tagbar functionality.
-   * [*the_silver_searcher*](https://github.com/ggreer/the_silver_searcher): For a better grep.
-   * [*flake8*](https://pypi.python.org/pypi/flake8): For Python syntax & PEP8 validation via Syntastic.
+   * [*ripgrep*](https://github.com/BurntSushi/ripgrep): For a better grep.
+   * [*neovim-python*](https://github.com/neovim/python-client): The python client for neovim plugins.
+   * [*flake8*](https://pypi.python.org/pypi/flake8): For Python syntax & PEP8 validation via Neomake.
 
 
  - Finally, we need to launch Vim and then invoke the appropriate Vim-Plug
@@ -68,4 +69,4 @@ what each of them do.
 
 ## Screenshot
 
-And here's a gratuitous screenshot using a fullscreen iTerm window, a few split panes, and the default colorscheme: ![screenshot](https://s3.amazonaws.com/nerderati.captures/J65KS.png)
+And here's a gratuitous screenshot using an iTerm2  window, a few (n)Vim split panes, and the gruvbox colorscheme: ![screenshot](http://snaps.nerderati.com/wNTqkSPH.png)
