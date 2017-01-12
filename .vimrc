@@ -11,10 +11,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
 Plug 'jiangmiao/auto-pairs'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kshenoy/vim-signature'
-Plug 'tweekmonster/braceless.vim'
 Plug 'mhinz/vim-startify'
 Plug 'janko-m/vim-test'
 Plug 'jmcantrell/vim-virtualenv'
@@ -48,8 +48,7 @@ Plug 'majutsushi/tagbar'
 Plug 'reedes/vim-pencil'
 
 " Markdown syntax augmentation
-Plug 'tpope/vim-markdown'
-Plug 'junegunn/goyo.vim'
+Plug 'rhysd/vim-gfm-syntax'
 
 " The all-important colorschemes
 Plug 'morhetz/gruvbox'
@@ -126,25 +125,16 @@ autocmd FileType jinja,html setlocal shiftwidth=2 expandtab tabstop=2 softtabsto
 "autocmd FileType python setlocal shiftwidth=4 expandtab tabstop=4 softtabstop=4 colorcolumn=80 omnifunc=pythoncomplete#Complete
 autocmd FileType python setlocal shiftwidth=4 expandtab tabstop=4 softtabstop=4 colorcolumn=80
 
-" Braceless.vim configuration
-"""""""""""""""""""""""""""""
-" Use braceless plugin for python-aware indenting, folding
-autocmd FileType python BracelessEnable +indent +fold
-
 " Use braceless configuration for haml, yaml, coffeescript since none of those
 " use braces
 autocmd FileType haml,yaml,coffee BracelessEnable +indent +fold +highlight
-
-let g:braceless_cont_call = 1
-let g:braceless_cont_block = 1
-let g:braceless_line_continuation = 0
-
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 
 " Configure deoplete-jedi
 let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python'  "force python2
+let g:jedi#use_splits_not_buffers = "left"
 
 " Syntax checker options
 let g:flake8_ignore="E128,E501"
@@ -229,3 +219,7 @@ let test#strategy = "neovim"
 
 " specify the default virtualenv for neovim.
 let g:python3_host_prog = '/Users/hoth/.virtualenvs/neovim/bin/python3.5'
+
+
+" Markdown fenced code highlighting
+let g:markdown_fenced_languages = ['python', 'json']
