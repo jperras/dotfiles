@@ -5,26 +5,51 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'tpope/vim-sensible'
 
 " General
+
+" Disable this for now, while I try out (U|De)nite
 Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'tpope/vim-fugitive'
+
+" Git plugin
+Plug 'jreybert/vimagit'
+
+" show add/deletions in sidebar gutter
 Plug 'airblade/vim-gitgutter'
+
+" Syntax aware commenting.
 Plug 'scrooloose/nerdcommenter'
+
+" Streamlined statusline.
 Plug 'bling/vim-airline'
-Plug 'tpope/vim-surround'
+
+" Smarter search/replace with :S (:Subvert) and %S (%Subvert)
 Plug 'tpope/vim-abolish'
+
+" Automatically insert or delete brackets, parens, quotes in pair.
 Plug 'jiangmiao/auto-pairs'
+
+" Editorconfig settings
 Plug 'editorconfig/editorconfig-vim'
+
+" Custom marks/shortcuts to jump to marks
 Plug 'kshenoy/vim-signature'
+
+" Custom start screen
 Plug 'mhinz/vim-startify'
-Plug 'janko-m/vim-test'
-Plug 'jmcantrell/vim-virtualenv'
+
+" Bracket pair mapping
 Plug 'tpope/vim-unimpaired'
+
+" Syntax checker
 Plug 'w0rp/ale'
+
+" Completions for rust
+Plug 'racer-rust/vim-racer'
 
 " Completion framework & plugins.
 """""""""""""""""""""""""""""""""
 Plug 'roxma/nvim-completion-manager'
 Plug 'roxma/python-support.nvim'
+
 " for python completions
 let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'jedi')
 " language specific completions on markdown file
@@ -48,6 +73,7 @@ Plug 'fatih/vim-go'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'tpope/vim-liquid'
 Plug 'IN3D/vim-raml'
+Plug 'rust-lang/rust.vim'
 
 " REStructuredText
 Plug 'Rykka/riv.vim'
@@ -64,26 +90,15 @@ Plug 'junegunn/goyo.vim'
 Plug 'rhysd/vim-gfm-syntax'
 
 " The all-important colorschemes
-Plug 'morhetz/gruvbox'
-Plug 'altercation/vim-colors-solarized'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'liuchengxu/space-vim-dark'
-Plug 'josuegaleas/jay'
-Plug 'ajmwagar/vim-dues'
+Plug 'joshdick/onedark.vim'
 
 set laststatus=2
 
 call plug#end()
 
-" Colorscheme
-set termguicolors
+" Colorscheme configuration
 set background=dark
-let g:gruvbox_italic=1
-let g:gruvbox_italicize_comments=1
-let g:gruvbox_italicize_strings=1
-"colorscheme gruvbox
-"colorscheme space-vim-dark
-colorscheme dues
+colorscheme onedark
 
 " Basic configurations
 """"""""""""""""""""""
@@ -101,9 +116,6 @@ nnoremap <leader>/ :set hlsearch!<CR>
 nnoremap / /\v
 vnoremap / /\v
 
-" Highlight VCS conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
 " Special characters for hilighting non-priting spaces/tabs/etc.
 set list listchars=tab:»\ ,trail:·
 
@@ -111,10 +123,6 @@ set list listchars=tab:»\ ,trail:·
 set backupdir=~/.config/nvim/backup_files//
 set directory=~/.config/nvim/swap_files//
 set undodir=~/.config/nvim/undo_files//
-
-hi Search ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow
-hi SpellBad ctermfg=15 ctermbg=9 guifg=White guibg=Red
-hi Comment cterm=italic
 
 " FZF file finder plugin
 """"""""""""""""""""""""
@@ -127,23 +135,12 @@ let g:fzf_tags_options = '-f .ctags"'
 """"""""""""""
 nmap <F2> :TagbarToggle<CR>
 
-" NERDTree
-""""""""""
-noremap <leader>t :NERDTreeToggle<CR>
-
-let NERDTreeIgnore = ['\.pyc$', '\.egg$', '\.o$', '\~$', '__pycache__$', '\.egg-info$']
-
 autocmd FileType jinja,html setlocal shiftwidth=2 expandtab tabstop=2 softtabstop=2
 
 " Python specific configs
 """""""""""""""""""""""""
 " We like spaces; avoid tabs. Set colorcolumn.
-"autocmd FileType python setlocal shiftwidth=4 expandtab tabstop=4 softtabstop=4 colorcolumn=80 omnifunc=pythoncomplete#Complete
 autocmd FileType python setlocal shiftwidth=4 expandtab tabstop=4 softtabstop=4 colorcolumn=80
-
-" Use braceless configuration for haml, yaml, coffeescript since none of those
-" use braces
-autocmd FileType haml,yaml,coffee BracelessEnable +indent +fold +highlight
 
 " GOYO - distractionless writing
 
@@ -180,25 +177,23 @@ endfunction
 autocmd! User GoyoEnter call <SID>goyo_enter()
 autocmd! User GoyoLeave call <SID>goyo_leave()
 
-" Use deoplete.
-"let g:deoplete#enable_at_startup = 1
-
-" Configure deoplete-jedi
-"let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python'  "force python2
-"let g:jedi#use_splits_not_buffers = "left"
-
-" ale configuration
+" Worp/ale configuration
 """""""""""""""""""
+
+" Ignore line too long error and specific hanging indent error
 let g:ale_python_flake8_args="--ignore=E501,E128"
 
 " Airline configuration
 """""""""""""""""""""""
 
 " Use theme for Airline
-let g:airline_theme='base16_spacemacs'
+let g:airline_theme='onedark'
 
+" Display all buffers when there's only one tab open.
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_section_b = airline#section#create('%{virtualenv#statusline()}')
+
+" Worp/ale syntax checker
+let g:airline#extensions#ale#enabled = 1
 
 " Vim-Golang plugin configs
 let g:go_highlight_functions = 1
@@ -216,10 +211,6 @@ if &listchars ==# 'eol:$'
 endif
 set list                " Show problematic characters.
 
-" Highlight all tabs and trailing whitespace characters.
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$\|\t/
-
 " Markdown-ish configurations
 """""""""""""""""""""""""""""""
 let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json=javascript', 'ruby']
@@ -228,12 +219,13 @@ let g:vim_markdown_frontmatter=1
 " Editorconfig exceptions
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
-" Vim-test
-let test#strategy = "neovim"
-
 " specify the default virtualenv for neovim.
 let g:python3_host_prog = '/Users/hoth/.virtualenvs/neovim/bin/python3.5'
 
-
-" Markdown fenced code highlighting
+" Markdown fenced code highlighting (GFM)
 let g:markdown_fenced_languages = ['python', 'json']
+
+" Rust racer
+let g:racer_cmd = "/Users/hoth/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+let g:rustfmt_autosave = 1
