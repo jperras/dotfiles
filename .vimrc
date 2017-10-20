@@ -12,6 +12,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'scrooloose/nerdtree', { 'on':  'NERDT
 " Git plugin
 Plug 'jreybert/vimagit'
 
+" Use fugitive since vimagit can't really do blame/etc. just yet.
+Plug 'tpope/vim-fugitive'
+
 " show add/deletions in sidebar gutter
 Plug 'airblade/vim-gitgutter'
 
@@ -59,21 +62,18 @@ let g:python_support_python3_requirements = add(get(g:,'python_support_python3_r
 let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'psutil')
 let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'setproctitle')
 
-" In-file searching ala 'ack'
-Plug 'gabesoft/vim-ags'
-
 " Fuzzy file finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Syntax highlighting
 Plug 'saltstack/salt-vim'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'rust-lang/rust.vim'
+Plug 'chemzqm/vim-jsx-improve'
 Plug 'stephpy/vim-yaml'
 Plug 'fatih/vim-go'
-Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'tpope/vim-liquid'
-Plug 'IN3D/vim-raml'
-Plug 'rust-lang/rust.vim'
 
 " REStructuredText
 Plug 'Rykka/riv.vim'
@@ -108,6 +108,7 @@ set relativenumber " Relative line numbering
 set ignorecase! " Ignore case in search
 set hidden " Hide instead of close bufffers to preserve history
 set synmaxcol=200 " only syntax highlight first 200cols for performance reasons.
+set conceallevel=2 " Conceal syntax elements.
 
 " Toggle highlight on ,/
 nnoremap <leader>/ :set hlsearch!<CR>
@@ -115,6 +116,8 @@ nnoremap <leader>/ :set hlsearch!<CR>
 " I CAN HAZ NORMAL REGEXES?
 nnoremap / /\v
 vnoremap / /\v
+
+set grepprg=rg\ --vimgrep " Use ripgrep for regular grep
 
 " Special characters for hilighting non-priting spaces/tabs/etc.
 set list listchars=tab:»\ ,trail:·
@@ -130,6 +133,23 @@ noremap <C-p> :FZF<CR>
 let g:fzf_height = '30%'
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_tags_options = '-f .ctags"'
+
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+" NERDTree
+""""""""""
+noremap <leader>t :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$', '\.egg$', '\.o$', '\~$', '__pycache__$', '\.egg-info$', 'node_modules$']
 
 " Tagbar/ctags
 """"""""""""""
