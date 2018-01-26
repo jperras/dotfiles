@@ -48,6 +48,10 @@ Plug 'w0rp/ale'
 " Completions for rust
 Plug 'racer-rust/vim-racer'
 
+" Helper for rails
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-endwise'
+
 " Completion framework & plugins.
 """""""""""""""""""""""""""""""""
 Plug 'roxma/nvim-completion-manager'
@@ -91,14 +95,19 @@ Plug 'rhysd/vim-gfm-syntax'
 
 " The all-important colorschemes
 Plug 'joshdick/onedark.vim'
+Plug 'arcticicestudio/nord-vim'
 
 set laststatus=2
 
 call plug#end()
 
 " Colorscheme configuration
-set background=dark
-colorscheme onedark
+"set background=dark
+"colorscheme onedark
+colorscheme nord
+let g:nord_italic_comments = 1
+let g:nord_comment_brightness = 12
+let g:nord_uniform_diff_background = 1
 
 " Basic configurations
 """"""""""""""""""""""
@@ -127,11 +136,25 @@ set backupdir=~/.config/nvim/backup_files//
 set directory=~/.config/nvim/swap_files//
 set undodir=~/.config/nvim/undo_files//
 
+" Use italics
+let g:onedark_terminal_italics = 1
+highlight Comment ctermfg=59 guifg=#5C6370 gui=italic
+
+
+
 " FZF file finder plugin
 """"""""""""""""""""""""
 noremap <C-p> :FZF<CR>
 let g:fzf_height = '30%'
-let g:fzf_command_prefix = 'Fzf'
+
+" All fzf commands will require this prefix
+let g:fzf_command_prefix = 'FZ'
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
 let g:fzf_tags_options = '-f .ctags"'
 
 " --column: Show column number
@@ -139,12 +162,16 @@ let g:fzf_tags_options = '-f .ctags"'
 " --no-heading: Do not show file headings in results
 " --fixed-strings: Search term as a literal string
 " --ignore-case: Case insensitive search
-" --no-ignore: Do not respect .gitignore, etc...
 " --hidden: Search hidden files and folders
 " --follow: Follow symlinks
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --ignore-case --glob "!.git/*" '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
 " NERDTree
 """"""""""
@@ -200,6 +227,10 @@ autocmd! User GoyoLeave call <SID>goyo_leave()
 " Worp/ale configuration
 """""""""""""""""""
 
+" Use python3 by default? Let's see how this goes.
+let g:ale_python_flake8_executable = 'python3'
+let g:ale_python_flake8_options = '-m flake8'
+
 " Ignore line too long error and specific hanging indent error
 let g:ale_python_flake8_args="--ignore=E501,E128"
 
@@ -249,3 +280,20 @@ let g:markdown_fenced_languages = ['python', 'json']
 let g:racer_cmd = "/Users/hoth/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 let g:rustfmt_autosave = 1
+
+
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
