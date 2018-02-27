@@ -2,12 +2,17 @@
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'tpope/vim-sensible'
-
 " General
 
-" Disable this for now, while I try out (U|De)nite
+Plug 'tpope/vim-sensible'
+
+" Colorschemes
+Plug 'chriskempson/base16-vim'
+
 Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+" Syntax aware commenting.
+Plug 'scrooloose/nerdcommenter'
 
 " Git plugin
 Plug 'jreybert/vimagit'
@@ -18,11 +23,8 @@ Plug 'tpope/vim-fugitive'
 " show add/deletions in sidebar gutter
 Plug 'airblade/vim-gitgutter'
 
-" Syntax aware commenting.
-Plug 'scrooloose/nerdcommenter'
-
 " Streamlined statusline.
-Plug 'bling/vim-airline'
+Plug 'itchyny/lightline.vim'
 
 " Smarter search/replace with :S (:Subvert) and %S (%Subvert)
 Plug 'tpope/vim-abolish'
@@ -48,69 +50,34 @@ Plug 'w0rp/ale'
 " Completions for rust
 Plug 'racer-rust/vim-racer'
 
-" Helper for rails
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-endwise'
-
-" Completion framework & plugins.
-"""""""""""""""""""""""""""""""""
-Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/python-support.nvim'
-
-" for python completions
-let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'jedi')
-" language specific completions on markdown file
-let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'mistune')
-
-" utils, optional
-let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'psutil')
-let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'setproctitle')
-
 " Fuzzy file finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Syntax highlighting
+Plug 'sheerun/vim-polyglot'
 Plug 'saltstack/salt-vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'rust-lang/rust.vim'
-Plug 'chemzqm/vim-jsx-improve'
-Plug 'stephpy/vim-yaml'
-Plug 'fatih/vim-go'
-Plug 'tpope/vim-liquid'
+Plug 'rhysd/vim-gfm-syntax'
 
-" REStructuredText
-Plug 'Rykka/riv.vim'
-Plug 'Rykka/InstantRst'
+" For writing prose.
+Plug 'reedes/vim-pencil'
+Plug 'reedes/vim-wordy'
+Plug 'reedes/vim-lexical'
 
 " Ctags tagbar
 Plug 'majutsushi/tagbar'
-
-" Allow better soft-wrapping of text in prose-based
-" formats e.g. markdown.
-Plug 'junegunn/goyo.vim'
-
-" Markdown syntax augmentation
-Plug 'rhysd/vim-gfm-syntax'
-
-" The all-important colorschemes
-Plug 'joshdick/onedark.vim'
-Plug 'arcticicestudio/nord-vim'
 
 set laststatus=2
 
 call plug#end()
 
 " Colorscheme configuration
-"set background=dark
-"colorscheme onedark
-colorscheme nord
-let g:nord_italic_comments = 1
-let g:nord_comment_brightness = 12
-let g:nord_uniform_diff_background = 1
+set background=dark
+colorscheme base16-dracula
 
 " Basic configurations
-""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ","
 set number " Relative line numbering
 set relativenumber " Relative line numbering
@@ -140,10 +107,16 @@ set undodir=~/.config/nvim/undo_files//
 let g:onedark_terminal_italics = 1
 highlight Comment ctermfg=59 guifg=#5C6370 gui=italic
 
+" Gitgutter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Always show the sign column so that we don't get shifting
+" left/right margins.
+set signcolumn=yes
 
 " FZF file finder plugin
-""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 noremap <C-p> :FZF<CR>
 let g:fzf_height = '30%'
 
@@ -166,7 +139,7 @@ let g:fzf_tags_options = '-f .ctags"'
 " --follow: Follow symlinks
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
-command! -bang -nargs=* Rg
+command! -bang -nargs=* Find
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --ignore-case --glob "!.git/*" '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
@@ -174,58 +147,24 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 
 " NERDTree
-""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 noremap <leader>t :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.egg$', '\.o$', '\~$', '__pycache__$', '\.egg-info$', 'node_modules$']
 
 " Tagbar/ctags
-""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <F2> :TagbarToggle<CR>
 
 autocmd FileType jinja,html setlocal shiftwidth=2 expandtab tabstop=2 softtabstop=2
 
 " Python specific configs
-"""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " We like spaces; avoid tabs. Set colorcolumn.
 autocmd FileType python setlocal shiftwidth=4 expandtab tabstop=4 softtabstop=4 colorcolumn=80
 
-" GOYO - distractionless writing
-
-"""""""""""""""""""""""""""""""""
-" Enter goyo for mail
-autocmd FileType mail Goyo
-
-" Add format option 'w' to add trailing white space, indicating that paragraph
-" continues on next line. This is to be used with mutt's 'text_flowed' option.
-augroup mail_trailing_whitespace " {
-    autocmd!
-    autocmd FileType mail setlocal formatoptions+=w
-augroup END " }
-
-function! s:goyo_enter()
-  let b:quitting = 0
-  let b:quitting_bang = 0
-  autocmd QuitPre <buffer> let b:quitting = 1
-  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-  setl spell spelllang=en_us
-endfunction
-
-function! s:goyo_leave()
-  " Quit Vim if this is the only remaining buffer
-  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    if b:quitting_bang
-      qa!
-    else
-      qa
-    endif
-  endif
-endfunction
-
-autocmd! User GoyoEnter call <SID>goyo_enter()
-autocmd! User GoyoLeave call <SID>goyo_leave()
-
 " Worp/ale configuration
-"""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use python3 by default? Let's see how this goes.
 let g:ale_python_flake8_executable = 'python3'
@@ -234,25 +173,19 @@ let g:ale_python_flake8_options = '-m flake8'
 " Ignore line too long error and specific hanging indent error
 let g:ale_python_flake8_args="--ignore=E501,E128"
 
-" Airline configuration
-"""""""""""""""""""""""
+" Status line
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Use theme for Airline
-let g:airline_theme='onedark'
-
-" Display all buffers when there's only one tab open.
-let g:airline#extensions#tabline#enabled = 1
-
-" Worp/ale syntax checker
-let g:airline#extensions#ale#enabled = 1
-
-" Vim-Golang plugin configs
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
+let g:lightline = {
+      \ 'colorscheme': 'Dracula',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
 
 " Tell Vim which characters to show for expanded TABs,
 " trailing whitespace, and end-of-lines. VERY useful!
@@ -262,25 +195,22 @@ if &listchars ==# 'eol:$'
 endif
 set list                " Show problematic characters.
 
-" Markdown-ish configurations
-"""""""""""""""""""""""""""""""
-let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'json=javascript', 'ruby']
-let g:vim_markdown_frontmatter=1
-
 " Editorconfig exceptions
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
-" specify the default virtualenv for neovim.
-let g:python3_host_prog = '/Users/hoth/.virtualenvs/neovim/bin/python3.5'
+" PROSE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Markdown fenced code highlighting (GFM)
-let g:markdown_fenced_languages = ['python', 'json']
+let g:pencil#textwidth = 78
 
-" Rust racer
-let g:racer_cmd = "/Users/hoth/.cargo/bin/racer"
-let g:racer_experimental_completer = 1
-let g:rustfmt_autosave = 1
+augroup pencil
+  autocmd!
+  autocmd FileType mail call pencil#init({'wrap': 'hard', 'textwidth': 72})
+                    \ | call lexical#init()
+augroup END
 
+" 24bit true color
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
