@@ -14,7 +14,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'scrooloose/nerdtree', { 'on':  'NERDT
 " Syntax aware commenting.
 Plug 'scrooloose/nerdcommenter'
 
-" Git plugin
 Plug 'jreybert/vimagit'
 
 " Use fugitive since vimagit can't really do blame/etc. just yet.
@@ -25,6 +24,8 @@ Plug 'airblade/vim-gitgutter'
 
 " Streamlined statusline.
 Plug 'itchyny/lightline.vim'
+Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'NovaDev94/lightline-onedark'
 
 " Smarter search/replace with :S (:Subvert) and %S (%Subvert)
 Plug 'tpope/vim-abolish'
@@ -74,7 +75,8 @@ call plug#end()
 
 " Colorscheme configuration
 set background=dark
-colorscheme base16-dracula
+"colorscheme base16-gruvbox-dark-soft
+colorscheme one
 
 " Basic configurations
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -84,7 +86,7 @@ set relativenumber " Relative line numbering
 set ignorecase! " Ignore case in search
 set hidden " Hide instead of close bufffers to preserve history
 set synmaxcol=200 " only syntax highlight first 200cols for performance reasons.
-set conceallevel=2 " Conceal syntax elements.
+"set conceallevel=2 " Conceal syntax elements.
 
 " Toggle highlight on ,/
 nnoremap <leader>/ :set hlsearch!<CR>
@@ -177,7 +179,7 @@ let g:ale_python_flake8_args="--ignore=E501,E128"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:lightline = {
-      \ 'colorscheme': 'Dracula',
+      \ 'colorscheme': 'onedark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
