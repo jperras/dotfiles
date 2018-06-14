@@ -48,8 +48,20 @@ Plug 'tpope/vim-unimpaired'
 " Syntax checker
 Plug 'w0rp/ale'
 
+" Formatting for various languages
+Plug 'sbdchd/neoformat'
+
 " Completions for rust
 Plug 'racer-rust/vim-racer'
+
+" Language client completions
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
 
 " Fuzzy file finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -60,6 +72,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'saltstack/salt-vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'rhysd/vim-gfm-syntax'
+Plug 'ehamberg/vim-cute-python', {'branch': 'moresymbols'} " Fancy conceal
+Plug 'rakr/vim-one'
 
 " For writing prose.
 Plug 'reedes/vim-pencil'
@@ -69,13 +83,16 @@ Plug 'reedes/vim-lexical'
 " Ctags tagbar
 Plug 'majutsushi/tagbar'
 
+" Python-specific
+Plug 'roxma/python-support.nvim'
+Plug 'ambv/black'
+
 set laststatus=2
 
 call plug#end()
 
 " Colorscheme configuration
 set background=dark
-"colorscheme base16-gruvbox-dark-soft
 colorscheme one
 
 " Basic configurations
@@ -86,7 +103,6 @@ set relativenumber " Relative line numbering
 set ignorecase! " Ignore case in search
 set hidden " Hide instead of close bufffers to preserve history
 set synmaxcol=200 " only syntax highlight first 200cols for performance reasons.
-"set conceallevel=2 " Conceal syntax elements.
 
 " Toggle highlight on ,/
 nnoremap <leader>/ :set hlsearch!<CR>
@@ -107,11 +123,21 @@ set undodir=~/.config/nvim/undo_files//
 
 " Use italics
 let g:onedark_terminal_italics = 1
+let g:one_allow_italics = 1
+
 highlight Comment ctermfg=59 guifg=#5C6370 gui=italic
+
+" Cursor configuration
+highlight Cursor guifg=white guibg=black
+" Insert mode is iCursor
+highlight iCursor guifg=white guibg=steelblue
+
+" Deoplete/jedi configurations.
+"''''''''''''''''''''''''''''''
+let g:deoplete#enable_at_startup = 1
 
 " Gitgutter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Always show the sign column so that we don't get shifting
 " left/right margins.
 set signcolumn=yes
@@ -163,21 +189,34 @@ autocmd FileType jinja,html setlocal shiftwidth=2 expandtab tabstop=2 softtabsto
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " We like spaces; avoid tabs. Set colorcolumn.
-autocmd FileType python setlocal shiftwidth=4 expandtab tabstop=4 softtabstop=4 colorcolumn=80
+"autocmd FileType python setlocal shiftwidth=4 expandtab tabstop=4 softtabstop=4 colorcolumn=80
+autocmd FileType python setlocal colorcolumn=88
 
 " Worp/ale configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Use python3 by default? Let's see how this goes.
-let g:ale_python_flake8_executable = 'python3'
-let g:ale_python_flake8_options = '-m flake8'
-
 " Ignore line too long error and specific hanging indent error
 let g:ale_python_flake8_args="--ignore=E501,E128"
 
+" NeoVim python configs
+let g:python_support_python2_requirements = add(get(g:,'python_support_python2_requirements',[]),'flake8')
+let g:python_support_python2_requirements = add(get(g:,'python_support_python2_requirements',[]),'python-language-server')
+let g:python_support_python2_requirements = add(get(g:,'python_support_python2_requirements',[]),'jedi')
+
+let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'flake8')
+let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'python-language-server')
+let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'mypy')
+let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'jedi')
+let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'pyls-mypy')
+
+" Language server configurations
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ }
+
+
 " Status line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let g:lightline = {
       \ 'colorscheme': 'onedark',
       \ 'active': {
